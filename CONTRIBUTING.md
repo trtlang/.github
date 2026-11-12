@@ -7,8 +7,6 @@ contributions are very welcome
 
 ## how to contribute
 
-> we assume you already have rust, with a nightly toolchain installed
-
 simply run `just setup`
 
 if you don't have `just`, you can get it with `brew install just` or

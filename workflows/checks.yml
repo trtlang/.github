@@ -1,0 +1,15 @@
+on:
+  pull_request:
+jobs:
+  practices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: extractions/setup-just@v4
+      - run: |
+          git ls-files '*.md' -z | xargs -0 docker run --rm -v "$PWD:/work" \
+          -w /work ghcr.io/igorshubovych/markdownlint-cli:v0.41.0
+      - run: |
+          git ls-files '*.yml' | xargs docker run --rm -v "$PWD:/work" \
+          -w /work cytopia/yamllint
+      - run: just --fmt --check
